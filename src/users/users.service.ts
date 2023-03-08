@@ -1,11 +1,6 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { FindManyOptions, Repository } from 'typeorm';
-import {
-  UserCreateDTO,
-  UserDTO,
-  UserWithExpensesDTO,
-  UserWithPasswordDTO,
-} from './dto/user.dto';
+import { UserCreateDTO, UserDTO } from './dto/user.dto';
 import { User } from './entities/user.entity';
 
 @Injectable()
