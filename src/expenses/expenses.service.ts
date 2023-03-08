@@ -11,7 +11,7 @@ import { Expense } from './entities/expense.entity';
 export class ExpensesService {
   constructor(
     @Inject('EXPENSES_REPOSITORY')
-    private repository: Repository<ExpenseDTO>,
+    private repository: Repository<Expense>,
   ) {}
 
   async findAll(options: FindManyOptions<Expense>): Promise<ExpenseDTO[]> {

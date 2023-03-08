@@ -25,6 +25,9 @@ export class ExpenseDTO extends ExpenseBaseDTO {
   id: number;
   @ApiProperty()
   date: Date;
+}
+
+export class ExpenseWithUserDTO extends ExpenseDTO {
   @ApiProperty()
-  user?: UserDTO;
+  user: UserDTO;
 }
