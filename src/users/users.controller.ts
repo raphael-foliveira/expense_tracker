@@ -15,25 +15,25 @@ export class UsersController {
   async findAll(
     @Query()
     options: FindManyOptions<UserDTO> = {},
-  ): Promise<UserDTO[]> {
+  ) {
     return this.service.findAll(options);
   }
 
   @ApiResponse({ status: 200, type: UserWithExpensesDTO })
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<UserWithExpensesDTO> {
+  async findOne(@Param('id') id: number) {
     return this.service.findOne(id, { expenses: true });
   }
 
   @ApiResponse({ status: 200, type: UserDTO })
   @Post()
-  async create(@Body() userData: UserCreateDTO): Promise<UserDTO> {
+  async create(@Body() userData: UserCreateDTO) {
     return this.service.create(userData);
   }
 
   @ApiResponse({ status: 200, type: UserDTO })
   @Put(':id')
-  async update(@Body() userData: User): Promise<UserDTO> {
+  async update(@Body() userData: User) {
     return this.service.update(userData.id, userData);
   }
 }

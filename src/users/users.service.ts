@@ -15,7 +15,7 @@ export class UsersService {
     private repository: Repository<User>,
   ) {}
 
-  async findAll(options: FindManyOptions<UserDTO> = {}): Promise<UserDTO[]> {
+  async findAll(options: FindManyOptions<UserDTO> = {}) {
     const users = await this.repository.find(options);
     return users.map((user) => {
       if (!user.active) {
@@ -26,30 +26,27 @@ export class UsersService {
     });
   }
 
-  async findOne(
-    id: number,
-    relations = { expenses: false },
-  ): Promise<UserWithExpensesDTO> {
+  async findOne(id: number, relations = { expenses: false }) {
     const user = await this.repository.findOne({
       where: { id },
       relations,
     });
-    if (!user.active) {
+    if (!user || !user.active) {
       throw new Error('User not found');
     }
     delete user.password;
     return user;
   }
 
-  async findOneByUsername(username: string): Promise<UserWithPasswordDTO> {
+  async findOneByUsername(username: string) {
     return this.repository.findOne({ where: { username } });
   }
 
-  async findOneByEmail(email: string): Promise<UserWithPasswordDTO> {
+  async findOneByEmail(email: string) {
     return this.repository.findOne({ where: { email } });
   }
 
-  async create(user: UserCreateDTO): Promise<UserDTO> {
+  async create(user: UserCreateDTO) {
     const newUser = await this.repository.save(user).catch(() => {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
     });
@@ -57,7 +54,7 @@ export class UsersService {
     return newUser;
   }
 
-  async update(id: number, user: UserCreateDTO): Promise<UserDTO> {
+  async update(id: number, user: UserCreateDTO) {
     const selectedUser = await this.repository.findOne({ where: { id } });
     if (!selectedUser.active) {
       throw new Error('User not found');
@@ -72,7 +69,7 @@ export class UsersService {
     return updatedUser;
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: number) {
     const user = await this.repository.findOne({ where: { id } });
     user.active = false;
   }
