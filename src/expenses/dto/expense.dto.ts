@@ -8,20 +8,17 @@ class ExpenseBaseDTO {
   amount: number;
 }
 
-export class ExpenseUserDTO {
+class UserExpenseCreateDTO {
   @ApiProperty()
   id: number;
 }
 
 export class ExpenseCreateDTO extends ExpenseBaseDTO {
   @ApiProperty()
-  user: ExpenseUserDTO;
+  user: UserExpenseCreateDTO;
 }
 
-export class ExpenseUpdateDTO extends ExpenseBaseDTO {
-  @ApiProperty()
-  id: number;
-}
+export class ExpenseUpdateDTO extends ExpenseBaseDTO {}
 
 export class ExpenseDTO extends ExpenseBaseDTO {
   @ApiProperty()
