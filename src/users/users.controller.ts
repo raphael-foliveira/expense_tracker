@@ -1,16 +1,6 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Post,
-  Put,
-  Query,
-  Req,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Request } from 'express';
-import { FindManyOptions, FindOneOptions } from 'typeorm';
+import { FindManyOptions } from 'typeorm';
 import { UserCreateDTO, UserDTO, UserWithExpensesDTO } from './dto/user.dto';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
@@ -28,10 +18,10 @@ export class UsersController {
   ): Promise<UserDTO[]> {
     return this.service.findAll(options);
   }
+
   @ApiResponse({ status: 200, type: UserWithExpensesDTO })
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<UserWithExpensesDTO> {
-    console.log(id);
     return this.service.findOne(id, { expenses: true });
   }
 
