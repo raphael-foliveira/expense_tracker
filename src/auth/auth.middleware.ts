@@ -1,8 +1,8 @@
 import { HttpException, Injectable, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-import { UserDTO } from 'src/users/dto/user.dto';
-import { UsersService } from 'src/users/users.service';
+import { UserDTO } from 'src/auth/dto/user.dto';
+import { UsersService } from 'src/auth/users.service';
 import { AuthService } from './auth.service';
 
 export interface RequestWithUser extends Request {

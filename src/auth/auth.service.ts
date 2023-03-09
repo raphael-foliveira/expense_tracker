@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { sign, verify } from 'jsonwebtoken';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from 'src/auth/users.service';
 import { SignupDTO } from './dto/signup.dto';
 
 const SECRET = 'secret';
