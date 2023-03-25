@@ -8,19 +8,19 @@ import {
   Put,
   Query,
   Req,
-} from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { RequestWithUser } from 'src/auth/auth.middleware';
-import { FindManyOptions } from 'typeorm';
+} from "@nestjs/common";
+import { ApiResponse, ApiTags } from "@nestjs/swagger";
+import { RequestWithUser } from "src/auth/auth.middleware";
+import { FindManyOptions } from "typeorm";
 import {
   ExpenseCreateDTO,
   ExpenseDTO,
   ExpenseUpdateDTO,
-} from './dto/expense.dto';
-import { ExpensesService } from './expenses.service';
+} from "./dto/expense.dto";
+import { ExpensesService } from "./expenses.service";
 
-@ApiTags('expenses')
-@Controller('expenses')
+@ApiTags("expenses")
+@Controller("expenses")
 export class ExpensesController {
   constructor(private service: ExpensesService) {}
 
@@ -34,8 +34,8 @@ export class ExpensesController {
   }
 
   @ApiResponse({ status: 200, type: ExpenseDTO })
-  @Get(':id')
-  async findOne(@Param('id') id: number) {
+  @Get(":id")
+  async findOne(@Param("id") id: number) {
     return this.service.findOne(id, { user: true });
   }
 
@@ -47,14 +47,14 @@ export class ExpensesController {
   }
 
   @ApiResponse({ status: 200, type: ExpenseDTO })
-  @Put(':id')
-  async update(@Param('id') id: number, @Body() expense: ExpenseUpdateDTO) {
+  @Put(":id")
+  async update(@Param("id") id: number, @Body() expense: ExpenseUpdateDTO) {
     return this.service.update(id, expense);
   }
 
   @ApiResponse({ status: 200 })
-  @Delete(':id')
-  async delete(@Param('id') id: number) {
+  @Delete(":id")
+  async delete(@Param("id") id: number) {
     return this.service.delete(id);
   }
 }

@@ -1,12 +1,12 @@
-import { HttpException, Inject, Injectable } from '@nestjs/common';
-import { FindManyOptions, Repository } from 'typeorm';
-import { ExpenseCreateDTO, ExpenseUpdateDTO } from './dto/expense.dto';
-import { Expense } from './entities/expense.entity';
+import { HttpException, Inject, Injectable } from "@nestjs/common";
+import { FindManyOptions, Repository } from "typeorm";
+import { ExpenseCreateDTO, ExpenseUpdateDTO } from "./dto/expense.dto";
+import { Expense } from "./entities/expense.entity";
 
 @Injectable()
 export class ExpensesService {
   constructor(
-    @Inject('EXPENSES_REPOSITORY')
+    @Inject("EXPENSES_REPOSITORY")
     private repository: Repository<Expense>,
   ) {}
 
@@ -28,7 +28,7 @@ export class ExpensesService {
   async update(id: number, expenseData: ExpenseUpdateDTO) {
     const expenseToUpdate = await this.repository.findOne({ where: { id } });
     if (!expenseToUpdate) {
-      throw new HttpException('Expense not found', 404);
+      throw new HttpException("Expense not found", 404);
     }
     const updatedExpense = {
       ...expenseToUpdate,

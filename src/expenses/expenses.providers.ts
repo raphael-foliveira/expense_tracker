@@ -1,10 +1,10 @@
-import { DataSource } from 'typeorm';
-import { Expense } from './entities/expense.entity';
+import { DataSource } from "typeorm";
+import { Expense } from "./entities/expense.entity";
 
 export const expensesProviders = [
   {
-    provide: 'EXPENSES_REPOSITORY',
+    provide: "EXPENSES_REPOSITORY",
     useFactory: (datasource: DataSource) => datasource.getRepository(Expense),
-    inject: ['DATABASE_CONNECTION'],
+    inject: ["DATABASE_CONNECTION"],
   },
 ];

@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Expense } from 'src/expenses/entities/expense.entity';
+import { ApiProperty } from "@nestjs/swagger";
+import { Expense } from "src/expenses/entities/expense.entity";
 
 class UserBaseDTO {
   @ApiProperty()

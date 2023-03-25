@@ -1,12 +1,12 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { FindManyOptions, Repository } from 'typeorm';
-import { UserCreateDTO, UserDTO } from './dto/user.dto';
-import { User } from './entities/user.entity';
+import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
+import { FindManyOptions, Repository } from "typeorm";
+import { UserCreateDTO, UserDTO } from "./dto/user.dto";
+import { User } from "./entities/user.entity";
 
 @Injectable()
 export class UsersService {
   constructor(
-    @Inject('USERS_REPOSITORY')
+    @Inject("USERS_REPOSITORY")
     private repository: Repository<User>,
   ) {}
 
@@ -27,7 +27,7 @@ export class UsersService {
       relations,
     });
     if (!user || !user.active) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
     delete user.password;
     return user;
@@ -43,7 +43,7 @@ export class UsersService {
 
   async create(user: UserCreateDTO) {
     const newUser = await this.repository.save(user).catch(() => {
-      throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
+      throw new HttpException("User already exists", HttpStatus.BAD_REQUEST);
     });
     delete newUser.password;
     return newUser;
@@ -52,7 +52,7 @@ export class UsersService {
   async update(id: number, user: UserCreateDTO) {
     const selectedUser = await this.repository.findOne({ where: { id } });
     if (!selectedUser.active) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
     delete user.username;
     const updatedUser = await this.repository.save({

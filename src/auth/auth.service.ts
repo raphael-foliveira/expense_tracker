@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { sign, verify } from 'jsonwebtoken';
-import { UsersService } from 'src/auth/users.service';
-import { SignupDTO } from './dto/signup.dto';
+import { Injectable } from "@nestjs/common";
+import { sign, verify } from "jsonwebtoken";
+import { UsersService } from "src/auth/users.service";
+import { SignupDTO } from "./dto/signup.dto";
 
-const SECRET = 'secret';
+const SECRET = "secret";
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
   }
 
   signToken(payload: any) {
-    return sign(payload, SECRET, { expiresIn: '1day' });
+    return sign(payload, SECRET, { expiresIn: "1day" });
   }
 
   async createAccount(userData: SignupDTO) {

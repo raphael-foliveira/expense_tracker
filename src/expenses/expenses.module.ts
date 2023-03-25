@@ -3,16 +3,16 @@ import {
   Module,
   NestModule,
   RequestMethod,
-} from '@nestjs/common';
-import { AuthMiddleware } from 'src/auth/auth.middleware';
-import { AuthModule } from 'src/auth/auth.module';
-import { DatabaseModule } from 'src/database/database.module';
-import { ExpensesController } from './expenses.controller';
-import { expensesProviders } from './expenses.providers';
-import { ExpensesService } from './expenses.service';
+} from "@nestjs/common";
+import { AuthMiddleware } from "src/auth/auth.middleware";
+import { AuthModule } from "src/auth/auth.module";
+import { DatabaseModule } from "src/database/database.module";
+import { ExpensesController } from "./expenses.controller";
+import { expensesProviders } from "./expenses.providers";
+import { ExpensesService } from "./expenses.service";
 
 @Module({
-  imports: [DatabaseModule, AuthModule],
+  imports: [AuthModule, DatabaseModule],
   controllers: [ExpensesController],
   providers: [ExpensesService, ...expensesProviders],
 })
@@ -21,9 +21,9 @@ export class ExpensesModule implements NestModule {
     consumer
       .apply(AuthMiddleware)
       .forRoutes(
-        { path: 'expenses', method: RequestMethod.POST },
-        { path: 'expenses', method: RequestMethod.PUT },
-        { path: 'expenses', method: RequestMethod.DELETE },
+        { path: "expenses", method: RequestMethod.POST },
+        { path: "expenses", method: RequestMethod.PUT },
+        { path: "expenses", method: RequestMethod.DELETE },
       );
   }
 }

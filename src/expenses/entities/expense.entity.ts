@@ -1,12 +1,12 @@
-import { User } from 'src/auth/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from "src/auth/entities/user.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Expense {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('integer')
+  @Column("integer")
   amount: number;
 
   @Column()

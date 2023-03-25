@@ -1,5 +1,5 @@
-import { Expense } from 'src/expenses/entities/expense.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Expense } from "src/expenses/entities/expense.entity";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 
 @Entity()
 export class User {
@@ -18,7 +18,7 @@ export class User {
   @OneToMany(() => Expense, (expense) => expense.user)
   expenses: any;
 
-  @Column({ default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ default: () => "CURRENT_TIMESTAMP" })
   createdAt: Date;
 
   @Column({ default: true })
