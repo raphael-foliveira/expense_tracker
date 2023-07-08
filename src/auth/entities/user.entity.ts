@@ -3,24 +3,24 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-  @Column({ unique: true })
-  username: string;
+	@Column({ unique: true })
+	username: string;
 
-  @Column({ unique: true })
-  email: string;
+	@Column({ unique: true })
+	email: string;
 
-  @Column()
-  password: string;
+	@Column()
+	password: string;
 
-  @OneToMany(() => Expense, (expense) => expense.user)
-  expenses: any;
+	@OneToMany(() => Expense, (expense) => expense.user)
+	expenses: Expense[];
 
-  @Column({ default: () => "CURRENT_TIMESTAMP" })
-  createdAt: Date;
+	@Column({ default: () => "CURRENT_TIMESTAMP" })
+	createdAt: Date;
 
-  @Column({ default: true })
-  active: boolean;
+	@Column({ default: true })
+	active: boolean;
 }

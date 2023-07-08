@@ -8,4 +8,4 @@ RUN yarn && yarn build
 
 EXPOSE 3000
 
-CMD ["yarn", "start:dev"]
+CMD ["yarn", "start"]
