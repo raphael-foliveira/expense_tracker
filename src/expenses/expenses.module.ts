@@ -18,13 +18,6 @@ import { ExpensesService } from "./expenses.service";
 })
 export class ExpensesModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {
-		consumer
-			.apply(AuthMiddleware)
-			.forRoutes(
-				{ path: "expenses", method: RequestMethod.GET },
-				{ path: "expenses", method: RequestMethod.POST },
-				{ path: "expenses", method: RequestMethod.PUT },
-				{ path: "expenses", method: RequestMethod.DELETE },
-			);
+		consumer.apply(AuthMiddleware).forRoutes("expenses");
 	}
 }
